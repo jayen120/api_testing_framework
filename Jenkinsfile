@@ -9,9 +9,9 @@ pipeline {
         }
         stage('Install Dependencies') {
             steps {
-                sh '''
+                bat '''
                 python -m venv venv
-                . venv/bin/activate
+                . venv\\bin\\activate
                 pip install --upgrade pip
                 pip install -r requirements.txt
                 '''
@@ -19,8 +19,8 @@ pipeline {
         }
         stage('Run Tests') {
             steps {
-                sh '''
-                . venv/bin/activate
+                bat '''
+                . venv\\bin\\activate
                 pytest -v --junitxml=pytest-results.xml --html=report.html --self-contained-html
                 '''
             }
